@@ -1,0 +1,126 @@
+/* Custom styles for the portfolio */
+
+.service-card {
+  @apply transition-all duration-500;
+}
+
+.project-card {
+  @apply transition-all duration-700;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #FAFAFA;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #111111;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #D4AF37;
+}
+
+/* Custom selection */
+::selection {
+  background: rgba(212, 175, 55, 0.2);
+  color: #111111;
+}
+
+/* Smooth transitions for all interactive elements */
+a, button, input, select, textarea {
+  @apply transition-all duration-300;
+}
+
+/* Custom classes for the accent colors if needed beyond Tailwind theme */
+.text-accent-gold {
+  color: var(--color-accent-gold);
+}
+
+.bg-accent-gold {
+  background-color: var(--color-accent-gold);
+}
+
+.border-accent-gold {
+  border-color: var(--color-accent-gold);
+}
+
+/* Animation for the trust indicator pulse */
+@keyframes pulse-gold {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
+}
+
+.animate-pulse-gold {
+  animation: pulse-gold 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Print Styles for PDF Export */
+@media print {
+  /* Hide interactive elements not needed in PDF */
+  nav, 
+  button, 
+  form, 
+  .cta-button, 
+  .animate-pulse,
+  .animate-pulse-gold {
+    display: none !important;
+  }
+
+  /* Ensure background colors and images are printed */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Layout adjustments for PDF */
+  body {
+    background-color: #FAFAFA !important;
+    color: #111111 !important;
+  }
+
+  section {
+    page-break-after: always;
+    padding-top: 4rem !important;
+    padding-bottom: 4rem !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  /* Ensure internal links look like links but are clean */
+  a[href^="#"] {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  /* Specific section fixes */
+  #hero {
+    padding-top: 2rem !important;
+  }
+
+  .project-card {
+    page-break-inside: avoid;
+  }
+
+  .service-card {
+    page-break-inside: avoid;
+  }
+
+  /* Hide the footer or simplify it */
+  footer {
+    border-top: 1px solid #eee;
+    margin-top: 2rem;
+  }
+}
+
